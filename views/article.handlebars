@@ -1,0 +1,54 @@
+<h1 class="text-center mb-3">{{title}}</h1>
+
+<a href="/" class="btn btn-dark mb-3">Back</a>
+
+{{#if article}}
+<!-- Valid ID -->
+<button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#editModal">
+	Edit
+</button>
+<button type="button" class="btn btn-danger mb-3" id="deleteButton" onclick="deleteArticle('{{article._id}}')">
+	Delete
+</button>
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="editModalLabel">Edit this article</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form action="/articles/{{article._id}}" method="POST">
+					<div class="form-group">
+						<label for="title">Title</label>
+						<input type="text" name="title" class="form-control" value="{{article.title}}">
+					</div>
+					<div class="form-group">
+						<label for="body">Body</label>
+						<textarea type="text" name="body" class="form-control" rows="4">{{article.body}}</textarea>
+					</div>
+					<input type="submit" value="Edit Article" class="btn btn-primary btn-block">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+{{> flash }}
+
+<h2>{{article.title}}</h2>
+<small>{{formatDate article.updatedAt}}</small>
+<p class="my-3">{{article.body}}</p>
+<small>by {{article.author}}</small>
+{{else}}
+<!-- Invalid ID -->
+<div class="alert alert-danger text-center">
+	{{msg}}
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+{{/if}}
