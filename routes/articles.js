@@ -160,7 +160,7 @@ router.delete('/:id', auth, async (req, res) => {
     if (article) {
       if (article.user_id == req.session.user._id) {
         // Valid ID with valid user, delete
-        const deleted = await Article.findOneAndDelete({ _id: article._id });
+        await article.remove();
         // Send session message
         req.session.flash = {
           type: 'success',
