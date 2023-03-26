@@ -15,6 +15,7 @@ router.get('/', async (req, res) => {
 				body: a.body,
 				author: a.author,
 				updatedAt: a.updatedAt,
+				user_id: a.user_id,
 			};
 		});
 		res.render('index', {
