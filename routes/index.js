@@ -10,11 +10,11 @@ router.get('/', async (req, res) => {
 		);
 		const mappedArticles = articles.map((a) => {
 			return {
-				_id,
-				title,
-				body,
-				author,
-				updatedAt,
+				_id: a._id,
+				title: a.title,
+				body: a.body,
+				author: a.author,
+				updatedAt: a.updatedAt,
 			};
 		});
 		res.render('index', {
