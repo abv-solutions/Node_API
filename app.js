@@ -1,3 +1,4 @@
+const dotenv = require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
@@ -18,20 +19,20 @@ app.use(express.urlencoded({ extended: false }));
 
 // Session Middleware
 app.use(
-  session({
-    secret: 'abv_sol_andrei',
-    resave: true,
-    saveUninitialized: true
-  })
+	session({
+		secret: 'abv_sol_andrei',
+		resave: true,
+		saveUninitialized: true,
+	})
 );
 
 // Handle session locals
 app.use((req, res, next) => {
-  res.locals.user = req.session.user;
-  res.locals.token = req.session.token;
-  res.locals.flash = req.session.flash;
-  delete req.session.flash;
-  next();
+	res.locals.user = req.session.user;
+	res.locals.token = req.session.token;
+	res.locals.flash = req.session.flash;
+	delete req.session.flash;
+	next();
 });
 
 // Set static folder
