@@ -101,7 +101,6 @@ router.post('/', async (req, res) => {
 		if (user) {
 			// Check password
 			bcrypt.compare(password, user.password, (err0, isMatch) => {
-				console.log(config.JWT_SECRET);
 				if (err0) throw err0;
 				if (isMatch) {
 					// Generate token

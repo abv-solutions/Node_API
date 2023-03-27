@@ -4,7 +4,6 @@ const mongo = `mongodb+srv://${config.MONGODB_USER}:${config.MONGODB_PASS}@${con
 // Connect to MongoDB
 const connectDB = async () => {
 	try {
-		console.log(mongo);
 		await mongoose.set('useFindAndModify', false).connect(mongo, {
 			useNewUrlParser: true,
 			useCreateIndex: true,
