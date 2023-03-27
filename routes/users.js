@@ -107,7 +107,7 @@ router.post('/', async (req, res) => {
 					jwt.sign(
 						{ id: user._id }, // Payload
 						config.JWT_SECRET, // Secret key
-						{ expiresIn: 60 }, // Sign options
+						{ expiresIn: 300 }, // Sign options
 						(err1, token) => {
 							if (err1) throw err1;
 							// Send session message
